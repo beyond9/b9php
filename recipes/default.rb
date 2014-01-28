@@ -54,7 +54,10 @@ template "#{node[:apache][:dir]}/conf.d/php5.conf" do
   backup false
 end
 
-
 template "#{node[:php][:ext_conf_dir]}/xdebug.ini" do
   source "xdebug.ini.erb"
+end
+
+template "#{node[:php][:ext_conf_dir]}/opcache.ini" do
+  source "opcache.ini.erb"
 end
