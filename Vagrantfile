@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.omnibus.chef_version = :latest
+  config.omnibus.chef_version = '11.8.2'
   
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
