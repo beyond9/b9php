@@ -27,6 +27,7 @@ when "rhel", "fedora", "suse"
     php-process
     php-opcache
     php-pecl-apcu
+    php-soap
     php-memcached
   ).each do |p|
     yum_package p do
