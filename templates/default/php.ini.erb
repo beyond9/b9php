@@ -380,7 +380,7 @@ html_errors = <%= node[:php5][:error_handling][:html_errors] %>
 ;error_append_string = "</font>"
 
 ; Log errors to specified file.
-;error_log = filename
+error_log = /var/log/php/error.log
 
 ; Log errors to syslog (Event Log on NT, not valid in Windows 95).
 ;error_log = syslog

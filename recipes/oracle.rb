@@ -5,15 +5,19 @@ when "rhel", "fedora", "suse"
   
   include_recipe "yum"
   
+  %w{libaio}.each do |a_package|
+    package a_package
+  end
+  
   include_recipe "b9php::remi"
-  include_recipe "b9php::remi55"
+  include_recipe "b9php::remi56"
   
   %w(
     php-pecl-oci8
   ).each do |p|
     yum_package p do
       action :install
-      options("--enablerepo=remi --enablerepo=remi-php55")
+      options("--enablerepo=remi --enablerepo=remi-php56")
     end
   end
 end
@@ -55,10 +59,5 @@ end
 execute "initiailize ldconfig" do
   command "ldconfig 2> /dev/null"
   action :run
-  notifies :restart, resources(:service => "apache2"), :delayed
-end
-
-template "#{node[:php][:ext_conf_dir]}/oci8.ini" do
-  source "oci8.ini.erb"
   notifies :restart, resources(:service => "apache2"), :delayed
 end

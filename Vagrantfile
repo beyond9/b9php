@@ -2,18 +2,19 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.omnibus.chef_version = '11.8.2'
   
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.hostname = "B9Base2014"
+  config.vm.hostname = "172.17.8.120"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  
-  config.vm.box = "b9Base"
-  config.vm.box_url  = "https://github.com/beyond9/b9centos/releases/download/1.0/centos65-x86_64-20140129.box"
+  config.vm.box = "b9centos"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  config.vm.box_url = "https://github.com/beyond9/b9centos/releases/download/v7.0.0/centos7-20141106.box"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -22,7 +23,7 @@ Vagrant.configure("2") do |config|
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
-  config.vm.network :private_network, ip: "33.33.33.19"
+  config.vm.network :private_network, ip: "172.17.8.120"
 
   config.berkshelf.enabled = true
 

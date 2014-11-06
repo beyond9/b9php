@@ -7,7 +7,7 @@ when "rhel", "fedora", "suse"
   include_recipe "yum"
 
   include_recipe "b9php::remi"
-  include_recipe "b9php::remi55"
+  include_recipe "b9php::remi56"
   
   %w(
     php
@@ -32,7 +32,7 @@ when "rhel", "fedora", "suse"
   ).each do |p|
     yum_package p do
       action :install
-      options("--enablerepo=remi --enablerepo=remi-php55")
+      options("--enablerepo=remi --enablerepo=remi-php56")
     end
   end
 end
@@ -46,20 +46,11 @@ template "#{node[:php][:ext_conf_dir]}/httpd/php.ini" do
   backup false
 end
 
-template "#{node['php']['conf_dir']}/php.ini" do
-  source "php_cli.ini.erb"
-  backup false
+directory "#{node[:apache][:dir]}/conf.d" do
+	action :create
 end
 
 template "#{node[:apache][:dir]}/conf.d/php5.conf" do
   source "php5.conf.erb"
   backup false
-end
-
-template "#{node[:php][:ext_conf_dir]}/xdebug.ini" do
-  source "xdebug.ini.erb"
-end
-
-template "#{node[:php][:ext_conf_dir]}/opcache.ini" do
-  source "opcache.ini.erb"
 end
